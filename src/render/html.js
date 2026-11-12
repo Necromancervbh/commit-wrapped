@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import { heatmap, formatHour, formatDate, WEEKDAYS, MONTHS } from '../stats.js';
 import { funFacts } from './terminal.js';
 import { esc } from './svg.js';
+import { art } from '../art.js';
 
 const asset = (name) => fs.readFileSync(new URL(`./story/${name}`, import.meta.url), 'utf8');
 
@@ -16,6 +17,7 @@ export function renderStory(stats, { card, command, repoUrl }) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
+${art('logo') ? `<link rel="icon" href="${art('logo')}">` : ''}
 <meta name="description" content="${esc(`${stats.commits} commits, ${stats.activeDays} active days, ${stats.personality.title}. Made with commit-wrapped.`)}">
 <style>
 ${asset('story.css')}
@@ -70,6 +72,20 @@ export function storyView(s, { card, command, repoUrl }) {
     ai: { commits: s.counts.ai, share: s.shares.ai, tools: s.aiTools },
     facts: funFacts(s).filter((f) => !f.text.startsWith('Busiest day') && !f.text.includes('co-authored with AI')),
     personality: s.personality,
+    art: {
+      intro: art(s.team ? 'team' : 'mascot'),
+      busiest: art('sprinter'),
+      hour: art(s.peakHour >= 5 && s.peakHour < 12 ? 'early-bird' : s.peakHour >= 12 && s.peakHour < 19 ? 'nine-to-five' : 'night-owl'),
+      streak: art('streak-machine'),
+      languages: art('polyglot'),
+      lines: art(s.deleted > s.added ? 'marie-kondo' : 'architect'),
+      file: art('surgeon'),
+      repos: art('steady-shipper'),
+      ai: art('cyborg'),
+      facts: art('team'),
+      personality: art(s.personality.id),
+      traits: Object.fromEntries(s.personality.traits.map((t) => [t.id, art(t.id)])),
+    },
     card,
     command,
     repoUrl,

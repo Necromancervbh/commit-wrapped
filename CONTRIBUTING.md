@@ -22,7 +22,7 @@ npm test
 
 ## Good first contributions
 
-- **A new personality.** Add an entry to `ARCHETYPES` in `src/personality.js` with a `score` (≥ 1 means "this applies") and a fun `describe`.
+- **A new personality.** Add an entry to `ARCHETYPES` in `src/personality.js` with a `score` (≥ 1 means "this applies") and a fun `describe`, plus a 384×384 portrait at `src/assets/personalities/<id>.webp` in the same glossy 3D style (the existing ones are a good reference for an image-generation prompt).
 - **A new card theme.** Add a palette to `THEMES` in `src/render/svg.js`.
 - **A missing language.** Add the extension to `src/languages.js`.
 - **A new story slide or fun fact.** See `src/render/story/client.js` and `funFacts()` in `src/render/terminal.js`.

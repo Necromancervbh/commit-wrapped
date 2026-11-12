@@ -2,7 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parseLog, resolveRename } from '../src/git.js';
 import { computeStats, longestStreak, heatmap, formatHour } from '../src/stats.js';
-import { personality } from '../src/personality.js';
+import { personality, ARCHETYPES } from '../src/personality.js';
+import { art } from '../src/art.js';
 import { languageOf, isNoise } from '../src/languages.js';
 import { renderCard } from '../src/render/svg.js';
 import { renderStory } from '../src/render/html.js';
@@ -116,6 +117,12 @@ test('languages and noise detection', () => {
   assert.ok(isNoise('node_modules/x/index.js'));
   assert.ok(isNoise('public/app.min.js'));
   assert.ok(!isNoise('src/distance.ts'));
+});
+
+test('every personality has character art', () => {
+  for (const id of [...ARCHETYPES.map((a) => a.id), 'steady-shipper', 'mascot', 'team']) {
+    assert.match(art(id) ?? '', /^data:image\/webp;base64,/, id);
+  }
 });
 
 test('formatHour', () => {

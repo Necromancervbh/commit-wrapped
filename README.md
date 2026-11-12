@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎁 commit-wrapped
+<img src="assets/banner.webp" alt="commit-wrapped: your year in code, unwrapped" width="100%">
 
 **Spotify Wrapped for your git history.**
 
@@ -37,7 +37,7 @@ You get three things:
 - 🖥️ **A terminal summary** with a contribution heatmap, right where you ran it
 
 <p align="center">
-  <img src="assets/story.png" alt="Slides from the commit-wrapped story: total commits, peak hour, longest streak and coding personality" width="900">
+  <img src="assets/story.webp" alt="Slides from the commit-wrapped story: peak hour, longest streak, AI pair programmer and fun facts" width="900">
 </p>
 
 ## What it finds out
@@ -59,20 +59,20 @@ Everyone gets a coding personality, picked from how they actually work:
 
 | | Personality | You get it when... |
 | --- | --- | --- |
-| 🦉 | **The Night Owl** | 30%+ of your commits land between 10 PM and 5 AM |
-| 🌅 | **The Early Bird** | You ship before 9 AM |
-| 🔥 | **The Streak Machine** | You committed 21+ days in a row |
-| ⚔️ | **The Weekend Warrior** | 35%+ of your commits happen on weekends |
-| 🤖 | **The Cyborg** | Roughly 1 in 5 of your commits is co-authored by AI |
-| 🧯 | **The Firefighter** | 30%+ of your commits are fixes |
-| 🧹 | **The Marie Kondo** | You deleted more code than you wrote |
-| 🏗️ | **The Architect** | Your average commit changes 250+ lines |
-| 🎯 | **The Surgeon** | Across 100+ commits, your median one is a dozen lines or fewer |
-| 🌍 | **The Polyglot** | Five or more languages make up a real share of your code |
-| ⚡ | **The Sprinter** | You once made 30+ commits in a single day |
-| ✈️ | **The Globetrotter** | You committed from 3+ time zones |
-| 💼 | **The Professional** | About 80% of your commits are Monday to Friday, 9 to 6 |
-| 📦 | **The Steady Shipper** | None of the above. Just reliable, drama-free shipping. |
+| <img src="src/assets/personalities/night-owl.webp" width="64" alt=""> | **🦉 The Night Owl** | 30%+ of your commits land between 10 PM and 5 AM |
+| <img src="src/assets/personalities/early-bird.webp" width="64" alt=""> | **🌅 The Early Bird** | You ship before 9 AM |
+| <img src="src/assets/personalities/streak-machine.webp" width="64" alt=""> | **🔥 The Streak Machine** | You committed 21+ days in a row |
+| <img src="src/assets/personalities/weekend-warrior.webp" width="64" alt=""> | **⚔️ The Weekend Warrior** | 35%+ of your commits happen on weekends |
+| <img src="src/assets/personalities/cyborg.webp" width="64" alt=""> | **🤖 The Cyborg** | Roughly 1 in 5 of your commits is co-authored by AI |
+| <img src="src/assets/personalities/firefighter.webp" width="64" alt=""> | **🧯 The Firefighter** | 30%+ of your commits are fixes |
+| <img src="src/assets/personalities/marie-kondo.webp" width="64" alt=""> | **🧹 The Marie Kondo** | You deleted more code than you wrote |
+| <img src="src/assets/personalities/architect.webp" width="64" alt=""> | **🏗️ The Architect** | Your average commit changes 250+ lines |
+| <img src="src/assets/personalities/surgeon.webp" width="64" alt=""> | **🎯 The Surgeon** | Across 100+ commits, your median one is a dozen lines or fewer |
+| <img src="src/assets/personalities/polyglot.webp" width="64" alt=""> | **🌍 The Polyglot** | Five or more languages make up a real share of your code |
+| <img src="src/assets/personalities/sprinter.webp" width="64" alt=""> | **⚡ The Sprinter** | You once made 30+ commits in a single day |
+| <img src="src/assets/personalities/globetrotter.webp" width="64" alt=""> | **✈️ The Globetrotter** | You committed from 3+ time zones |
+| <img src="src/assets/personalities/nine-to-five.webp" width="64" alt=""> | **💼 The Professional** | About 80% of your commits are Monday to Friday, 9 to 6 |
+| <img src="src/assets/personalities/steady-shipper.webp" width="64" alt=""> | **📦 The Steady Shipper** | None of the above. Just reliable, drama-free shipping. |
 
 Post yours and tag it **#commitwrapped**. Think we're missing one? [Add it](CONTRIBUTING.md), it's about ten lines of code.
 
@@ -144,4 +144,4 @@ If commit-wrapped made you smile, **a ⭐ helps other developers find it.**
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). The banner, logo and character art were made for this project with AI image generation and are covered by the same license.

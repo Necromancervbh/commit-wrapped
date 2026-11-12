@@ -7,11 +7,14 @@
   const pct = (x) => `${Math.round(x * 100)}%`;
   const count = (n) => `<span data-to="${n}">${num(n)}</span>`;
   const a = (d) => `style="--d:${d}s"`;
+  const pic = (src, d = 0, size = '') => (src ? `<img class="art pop ${size}" style="--d:${d}s" src="${src}" alt="">` : '');
+  const A = D.art || {};
 
   const slides = [];
   const add = (bg, html) => slides.push({ bg, html });
 
   add('g1', `
+    ${pic(A.intro, 0.2, 'big')}
     <p ${a(0)} class="kicker anim">${D.year} Wrapped</p>
     <h1 class="anim" ${a(0.15)}>Hey ${esc(D.firstName)}.</h1>
     <p ${a(0.4)} class="lead anim">You wrote a lot of code this year.<br>Let's unwrap it.</p>
@@ -26,6 +29,7 @@
 
   if (D.busiest) {
     add('g3', `
+      ${pic(A.busiest, 0.9)}
       <p ${a(0)} class="kicker anim">Your busiest day was</p>
       <h2 class="anim" ${a(0.15)}>${esc(D.busiest.weekday)},<br>${esc(D.busiest.label)}</h2>
       <div ${a(0.5)} class="mega anim">${count(D.busiest.commits)}</div>
@@ -34,6 +38,7 @@
 
   const maxH = Math.max(...D.hours, 1);
   add('g4', `
+    ${pic(A.hour, 0.2)}
     <p ${a(0)} class="kicker anim">You're most alive at</p>
     <div ${a(0.15)} class="mega anim">${esc(D.peakHour)}</div>
     <div class="hours">${D.hours.map((n, i) => `<i style="--h:${(n / maxH) * 100}%;--i:${i}"${i === D.peakHourIndex ? ' class="peak"' : ''} title="${n}"></i>`).join('')}</div>
@@ -42,6 +47,7 @@
 
   if (D.streak.days > 1) {
     add('g2', `
+      ${pic(A.streak, 0.2)}
       <p ${a(0)} class="kicker anim">Your longest streak</p>
       <div ${a(0.15)} class="mega anim">${count(D.streak.days)}<span class="unit"> days</span></div>
       <p ${a(0.35)} class="lead anim">${esc(D.streak.from)} → ${esc(D.streak.to)}, without missing a single day.</p>
@@ -51,6 +57,7 @@
   if (D.languages.length) {
     const top = D.languages[0].share;
     add('g5', `
+      ${pic(A.languages, 0.2, 'sm')}
       <p ${a(0)} class="kicker anim">You wrote code in</p>
       <h2 class="anim" ${a(0.15)}>${D.languageCount} language${D.languageCount === 1 ? '' : 's'}</h2>
       <ol class="langs">${D.languages.map((l, i) => `
@@ -61,6 +68,7 @@
   }
 
   add('g7', `
+    ${pic(A.lines, 0.2)}
     <p ${a(0)} class="kicker anim">You added</p>
     <div ${a(0.15)} class="mega mid anim plus">+${count(D.added)}</div>
     <p ${a(0.45)} class="kicker anim">and deleted</p>
@@ -69,6 +77,7 @@
 
   if (D.topFile) {
     add('g8', `
+      ${pic(A.file, 0.2, 'sm')}
       <p ${a(0)} class="kicker anim">The file you couldn't leave alone</p>
       <code ${a(0.15)} class="file anim">${esc(D.topFile.path)}</code>
       <p ${a(0.35)} class="lead anim">${D.repos.length > 1 ? `in <b>${esc(D.topFile.repo)}</b>, ` : ''}touched in <b>${num(D.topFile.commits)}</b> commits.</p>
@@ -77,6 +86,7 @@
 
   if (D.repos.length > 1) {
     add('g3', `
+      ${pic(A.repos, 0.2)}
       <p ${a(0)} class="kicker anim">Where you spent your time</p>
       <h2 class="anim" ${a(0.15)}>${D.repos.length} repos</h2>
       <ol class="list">${D.repos.slice(0, 6).map((r, i) => `<li class="anim" ${a(0.35 + i * 0.1)}><span class="e">${['🥇', '🥈', '🥉'][i] ?? '·'}</span><span>${esc(r.name)}</span><span class="n">${num(r.commits)}</span></li>`).join('')}</ol>`);
@@ -85,7 +95,7 @@
   if (D.ai.commits) {
     add('g9', `
       <p ${a(0)} class="kicker anim">Your pair programmer</p>
-      <div ${a(0.15)} class="big-emoji pop">🤖</div>
+      ${A.ai ? pic(A.ai, 0.15, 'big') : `<div ${a(0.15)} class="big-emoji pop">🤖</div>`}
       <h2 class="anim" ${a(0.4)}>${count(D.ai.commits)} commits</h2>
       <p ${a(0.6)} class="lead anim">were co-authored by AI. That's <b>${pct(D.ai.share)}</b> of your year.
         ${D.ai.tools.length ? `Favorite co-pilot: <b>${esc(D.ai.tools[0].name)}</b>.` : ''}</p>`);
@@ -93,6 +103,7 @@
 
   if (D.facts.length) {
     add('g6', `
+      ${pic(A.facts, 0.2, 'sm')}
       <p ${a(0)} class="kicker anim">Things we noticed</p>
       <h2 class="anim" ${a(0.15)}>Fun facts</h2>
       <ul class="list">${D.facts.map((f, i) => `<li class="anim" ${a(0.35 + i * 0.15)}><span class="e">${f.emoji}</span><span>${esc(f.text)}</span></li>`).join('')}</ul>`);
@@ -101,10 +112,10 @@
   const P = D.personality;
   add('g1', `
     <p ${a(0)} class="kicker anim">Your coding personality is</p>
-    <div style="--d:.7s" class="big-emoji pop">${P.emoji}</div>
+    ${A.personality ? pic(A.personality, 0.7, 'hero') : `<div style="--d:.7s" class="big-emoji pop">${P.emoji}</div>`}
     <h1 class="anim" ${a(1.1)}>${esc(P.title)}</h1>
     <p ${a(1.3)} class="lead anim"><b>${esc(P.tagline)}</b> ${esc(P.description)}</p>
-    ${P.traits.length ? `<div ${a(1.6)} class="chips anim">${P.traits.map((t) => `<span class="chip">${t.emoji} ${esc(t.title)}</span>`).join('')}</div>` : ''}`);
+    ${P.traits.length ? `<div ${a(1.6)} class="chips anim">${P.traits.map((t) => `<span class="chip">${A.traits?.[t.id] ? `<img src="${A.traits[t.id]}" alt="">` : t.emoji} ${esc(t.title)}</span>`).join('')}</div>` : ''}`);
 
   const cardSrc = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(D.card)}`;
   const shareText = `My ${D.year} in code: ${num(D.commits)} commits, a ${D.streak.days}-day streak, and apparently I'm ${P.title} ${P.emoji}\n\nGet your own: ${D.command}`;

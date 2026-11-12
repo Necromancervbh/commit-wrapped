@@ -1,4 +1,5 @@
 import { heatmap, formatHour, WEEKDAYS } from '../stats.js';
+import { art } from '../art.js';
 
 export const THEMES = {
   aurora: {
@@ -53,6 +54,11 @@ export function renderCard(stats, { theme = 'aurora', credit = 'commit-wrapped' 
   });
   out.push(`<linearGradient id="hl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${t.heat[2]}"/><stop offset="1" stop-color="${t.heat[4]}"/></linearGradient>`);
   out.push(`<clipPath id="r"><rect width="${W}" height="${H}" rx="28"/></clipPath>`);
+  const portrait = art(p.id);
+  const ps = 132;
+  const px = W - P - ps;
+  const py = 34;
+  if (portrait) out.push(`<clipPath id="pc"><rect x="${px}" y="${py}" width="${ps}" height="${ps}" rx="24"/></clipPath>`);
   out.push('</defs>');
   out.push(`<g clip-path="url(#r)" font-family="${esc(FONT)}">`);
   out.push(`<rect width="${W}" height="${H}" fill="${t.bg}"/>`);
@@ -60,9 +66,14 @@ export function renderCard(stats, { theme = 'aurora', credit = 'commit-wrapped' 
 
   // Header
   out.push(text(P, 84, `${stats.year} WRAPPED`, { size: 15, fill: t.muted, weight: 700, spacing: 5 }));
-  out.push(text(P, 136, clip(stats.name, 26), { size: 46, fill: t.text, weight: 800 }));
-  out.push(text(W - P, 84, 'CODING PERSONALITY', { size: 15, fill: t.muted, weight: 700, spacing: 5, anchor: 'end' }));
-  out.push(text(W - P, 136, `${p.emoji} ${p.title}`, { size: 38, fill: t.accent, weight: 800, anchor: 'end' }));
+  out.push(text(P, 136, clip(stats.name, 22), { size: 46, fill: t.text, weight: 800 }));
+  const tx0 = portrait ? px - 24 : W - P;
+  out.push(text(tx0, 84, 'CODING PERSONALITY', { size: 15, fill: t.muted, weight: 700, spacing: 5, anchor: 'end' }));
+  out.push(text(tx0, 136, portrait ? p.title : `${p.emoji} ${p.title}`, { size: 36, fill: t.accent, weight: 800, anchor: 'end' }));
+  if (portrait) {
+    out.push(`<image href="${portrait}" x="${px}" y="${py}" width="${ps}" height="${ps}" clip-path="url(#pc)" preserveAspectRatio="xMidYMid slice"/>`);
+    out.push(`<rect x="${px}" y="${py}" width="${ps}" height="${ps}" rx="24" fill="none" stroke="${t.accent}" stroke-opacity="0.45" stroke-width="2"/>`);
+  }
 
   // Big numbers
   const big = [
