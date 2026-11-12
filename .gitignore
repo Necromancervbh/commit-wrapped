@@ -1,0 +1,7 @@
+node_modules/
+commit-wrapped-*.html
+commit-wrapped-*.svg
+commit-wrapped-*.json
+!docs/**
+*.log
+.DS_Store

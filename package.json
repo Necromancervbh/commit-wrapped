@@ -1,0 +1,42 @@
+{
+  "name": "commit-wrapped",
+  "version": "1.0.0",
+  "description": "Spotify Wrapped for your git history. An animated story and a shareable card of your year in code, from every repo on your machine. Zero dependencies, 100% local.",
+  "type": "module",
+  "bin": {
+    "commit-wrapped": "bin/commit-wrapped.js"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "engines": {
+    "node": ">=18.3"
+  },
+  "scripts": {
+    "test": "node --test",
+    "demo": "node bin/commit-wrapped.js --demo --out docs --no-open"
+  },
+  "keywords": [
+    "git",
+    "wrapped",
+    "year-in-review",
+    "spotify-wrapped",
+    "git-stats",
+    "commits",
+    "developer-tools",
+    "cli",
+    "contributions",
+    "github-profile"
+  ],
+  "author": "Vaibhav Shukla",
+  "license": "MIT",
+  "homepage": "https://github.com/Necromancervbh/commit-wrapped#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Necromancervbh/commit-wrapped.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Necromancervbh/commit-wrapped/issues"
+  }
+}
