@@ -7,6 +7,7 @@
 One command turns a year of commits into an animated story, a shareable card and a coding personality.
 It works across every repo on your machine, has zero dependencies, and nothing ever leaves your laptop.
 
+[![npm](https://img.shields.io/npm/v/commit-wrapped?color=cb3837)](https://www.npmjs.com/package/commit-wrapped)
 [![CI](https://github.com/Necromancervbh/commit-wrapped/actions/workflows/ci.yml/badge.svg)](https://github.com/Necromancervbh/commit-wrapped/actions/workflows/ci.yml)
 ![dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
 ![node](https://img.shields.io/badge/node-%E2%89%A518-339933)
@@ -21,13 +22,13 @@ It works across every repo on your machine, has zero dependencies, and nothing e
 ## Get yours in 10 seconds
 
 ```bash
-npx github:Necromancervbh/commit-wrapped
+npx commit-wrapped
 ```
 
 Run it inside a repo, or point it at the folder where all your code lives to wrap your **whole year across every project**:
 
 ```bash
-npx github:Necromancervbh/commit-wrapped ~/code
+npx commit-wrapped ~/code
 ```
 
 You get three things:
@@ -79,7 +80,7 @@ Post yours and tag it **#commitwrapped**. Think we're missing one? [Add it](CONT
 ## Put it on your GitHub profile
 
 ```bash
-npx github:Necromancervbh/commit-wrapped ~/code --out .
+npx commit-wrapped ~/code --out .
 ```
 
 Commit the generated `commit-wrapped-2026.svg` to your profile repo (`<you>/<you>`) and add this to its README:
@@ -113,10 +114,10 @@ commit-wrapped [paths...] [options]
 A few things to try:
 
 ```bash
-npx github:Necromancervbh/commit-wrapped --everyone          # your team's year in the current repo
-npx github:Necromancervbh/commit-wrapped -y 2025             # last year
-npx github:Necromancervbh/commit-wrapped -a work@corp.com -a me@home.dev ~/code   # several emails
-npx github:Necromancervbh/commit-wrapped --json | jq .personality                 # pipe it anywhere
+npx commit-wrapped --everyone          # your team's year in the current repo
+npx commit-wrapped -y 2025             # last year
+npx commit-wrapped -a work@corp.com -a me@home.dev ~/code   # several emails
+npx commit-wrapped --json | jq .personality                 # pipe it anywhere
 ```
 
 ## How it works
